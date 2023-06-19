@@ -14,5 +14,5 @@ def student(request):
         }
     return render(request, 'home/home.html', context)
 
-def student_details(request):
-    return 
+def student_detail(request):
+    return render(request, 'home/student_detail.html')
