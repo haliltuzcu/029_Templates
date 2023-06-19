@@ -1,11 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Detail</title>
-</head>
-<body>
-    <h1>Student Detail Page</h1>
-</body>
-</html>
+{% extends 'home/base.html' %}
+
+
+{% block title %}
+    Detail
+{% endblock title %}
+    Detail
+
+{% block body %}
+
+<h1>Student Detail Page</h1>
+
+
+<ol>
+    {% for student in students  %}
+        <li>
+            {{ student.first_name }} -
+            {{ student.last_name }} -
+            {{ student.number }}
+        </li>
+    {% endfor %}
+    </ol>
+    
+    
+{% endblock body %}
