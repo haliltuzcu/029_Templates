@@ -32,7 +32,7 @@ from django.shortcuts import redirect
 def student_add(request):
     form = StudentForm()
     if request.method == 'POST':
-        form = StudentForm(request.POST)
+        form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('list')
@@ -42,7 +42,13 @@ def student_add(request):
     return render(request, 'home/student_add.html', context)
 
 
-from django.views.generic import CreateView
+from django.views.generic import (
+    CreateView, 
+    ListView,
+    DetailView,
+    UpdateView,
+    DeleteView
+)
 from django.urls import reverse_lazy
 
 class StudentAddView(CreateView):
@@ -52,3 +58,30 @@ class StudentAddView(CreateView):
     # defaults to 'home/student_form.html'
     template_name = 'home/student_add.html'
 
+
+class StudentListView(ListView):
+    model = Student
+    # defaults to 'home/student_form.html'
+    template_name = 'home/student_list.html'
+    # paginate_by = 5
+
+
+class StudentDetailView(DetailView):
+    model = Student
+    # pk_url_kwarg = 'id'
+    template_name = 'home/student_detail_2.html'
+    context_object_name = 'student'
+
+
+class StudentUpdateView(UpdateView):
+    model = Student
+    form_class = StudentForm
+    # pk_url_kwarg = 'id'
+    context_object_name = 'student'
+    success_url = reverse_lazy('list')
+
+
+class StudentDeleteView(DeleteView):
+    model = Student
+    # pk_url_kwarg = 'id'
+    success_url = reverse_lazy('list')
