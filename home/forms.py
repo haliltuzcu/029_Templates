@@ -15,3 +15,7 @@ class StudentForm(forms.ModelForm):
         labels = {
             'first_name':'First Name',
         }
+        widgets = {
+            # 'gender':forms.CheckboxSelectMultiple
+            'gender':forms.RadioSelect
+        }
