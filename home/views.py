@@ -22,7 +22,9 @@ def student_detail(request):
         'students': students
     }
     return render(request, 'home/student_detail.html', context)
-    
+
+
+
 
 from .forms import StudentForm
 from django.shortcuts import redirect
@@ -39,6 +41,7 @@ def student_add(request):
     }
     return render(request, 'home/student_add.html', context)
 
+
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
@@ -46,3 +49,6 @@ class StudentAddView(CreateView):
     model = Student
     form_class = StudentForm
     success_url = reverse_lazy('list')
+    # defaults to 'home/student_form.html'
+    template_name = 'home/student_add.html'
+
